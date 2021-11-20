@@ -1,17 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <user-auth></user-auth>
+  <!-- <HelloWorld v-if="userAuthanticated" msg="Welcome to Your Vue.js App" /> -->
+  <HelloWorld v-if="isAuth" msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import UserAuth from "./components/UserAuth.vue";
+
+// import { mapGetters } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    UserAuth,
+  },
+  computed: {
+    // ...mapGetters(["userAuthanticated"]),
+    isAuth() {
+      return this.$store.getters.userAuthanticated;
+    },
+  },
+};
 </script>
 
 <style>
